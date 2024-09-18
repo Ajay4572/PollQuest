@@ -1,39 +1,67 @@
-# Django-Poll-App
 
-Django poll app is a full featured polling app. You have to register in this app to show the polls and to vote. If you already voted you can not vote again. Only the owner of a poll can add poll , edit poll, update poll, delete poll , add choice, update choice, delete choice and end a poll. If a poll is ended it can not be voted. Ended poll only shows user the final result of the poll. There is a search option for polls. Also user can filter polls by name, publish date, and by number of voted. Pagination will work even after applying filter.
+# PollQuest
 
-<h1>Getting Started</h1>
-<p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.</p>
+PollQuest is a full-featured polling app. You have to register in this app to view the polls and vote. If you have already voted, you cannot vote again. Only the owner of a poll can create, edit, update, delete polls, add choices, update choices, delete choices, and end a poll. Once a poll is ended, it can no longer accept votes. Ended polls only show users the final results. There is a search option for polls, and users can filter polls by name, publish date, and number of votes. Pagination works even after applying filters.
 
-<h2>Prerequisites</h2>
-<code>python== 3.5 or up and django==2.0 or up</code>
+## Getting Started
 
-<h2>Installing</h2>
-<pre>open terminal and type</pre>
-<code>git clone https://github.com/devmahmud/Django-poll-app.git</code><br><br>
+These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
 
-<h4>or simply download using the url below</h4>
-<code>https://github.com/devmahmud/Django-poll-app.git</code><br>
-
-<h2>To migrate the database open terminal in project directory and type</h2>
-<code>python manage.py makemigrations</code><br>
-<code>python manage.py migrate</code>
-
-<h2>To use admin panel you need to create superuser using this command </h2>
-<code>python manage.py createsuperuser</code>
-
-<h2>To Create some dummy text data for your app follow the step below:</h2>
-<code>pip install faker</code>
-<code>python manage.py shell</code>
-<code>import seeder</code>
-<code>seeder.seed_all(30)</code>
-<p>Here 30 is a number of entry. You can use it as your own</p>
-
-## Configure Email - Poll Owner receives Email when vote is cast by user
-
-- Get your smtp host details and replace following values in your `settings.py`
+### Prerequisites
 
 ```text
+Python 3.5 or higher and Django 2.0 or higher
+```
+
+### Installing
+
+Open your terminal and type:
+
+```bash
+git clone https://github.com/yourusername/PollQuest.git
+```
+
+Or simply download using the URL below:
+
+```text
+https://github.com/yourusername/PollQuest.git
+```
+
+### To Migrate the Database
+
+Open the terminal in the project directory and type:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### To Use the Admin Panel
+
+You need to create a superuser using this command:
+
+```bash
+python manage.py createsuperuser
+```
+
+### To Create Dummy Data
+
+Follow these steps:
+
+```bash
+pip install faker
+python manage.py shell
+import seeder
+seeder.seed_all(30)
+```
+
+*Here, 30 is the number of entries. You can adjust this as needed.*
+
+## Configure Email
+
+Poll owners receive an email when a vote is cast by a user. Get your SMTP host details and replace the following values in your `settings.py`:
+
+```python
 # Configure email settings
 EMAIL_HOST = '<your smtp host>'
 EMAIL_PORT = '<smtp port>'
@@ -41,10 +69,11 @@ EMAIL_HOST_USER = '<smtp host user>'
 EMAIL_HOST_PASSWORD = '<smtp host pass>'
 DEFAULT_FROM_EMAIL = '<from email address>'
 ```
-<h2> Configuring OAuth login </h2>
-<details>
-    <summary>Obtaining OAuth Client ID for Google</summary>
 
+### Configuring OAuth Login
+
+<details>
+<summary>Obtaining OAuth Client ID for Google</summary>
 
 1. **Go to the Google Cloud Console:**
    - Navigate to [Google Cloud Console](https://console.cloud.google.com/).
@@ -55,139 +84,119 @@ DEFAULT_FROM_EMAIL = '<from email address>'
    - Click on "New Project" and follow the prompts to create a new project.
 
 3. **Enable the Google Identity service:**
-   - In the Google Cloud Console, navigate to "APIs & Services" > "Dashboard."
+   - Navigate to "APIs & Services" > "Dashboard."
    - Click on "Enable APIs and Services."
-   - Search for "Google Identity" or "Google+ API" and enable it for your project.
+   - Search for "Google Identity" and enable it.
 
 4. **Create OAuth consent screen:**
-   - In the Google Cloud Console, navigate to "APIs & Services" > "OAuth consent screen."
-   - Fill in the required fields (like application name, user support email, etc.).
-   - Add scopes (permissions) your application requires.
-   - Save the consent screen information.
+   - Navigate to "APIs & Services" > "OAuth consent screen."
+   - Fill in the required fields and save.
 
 5. **Create OAuth credentials:**
-   - In the Google Cloud Console, navigate to "APIs & Services" > "Credentials."
+   - Navigate to "APIs & Services" > "Credentials."
    - Click on "Create Credentials" > "OAuth client ID."
-   - Select "Web application" as the application type.
-   - Enter a name for your OAuth client.
-   - Add authorized redirect URIs : `http://127.0.0.1:8000/complete/google-oauth2/`
+   - Select "Web application" and add authorized redirect URIs: `http://127.0.0.1:8000/complete/google-oauth2/`.
    - Click "Create."
 
 6. **Copy the client ID and client secret:**
-   - Once the OAuth client is created, you'll see your client ID and client secret.
-   - Copy these values and update the following variables in settings.py
+   - Update the following variables in `settings.py`:
 
-        ```
-        SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your-client-id'
-        SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your-client-secret'
-        ```
+   ```python
+   SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your-client-id'
+   SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your-client-secret'
+   ```
 
 For detailed instructions, refer to Google's documentation on [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2).
 </details>
 
 <details>
-   <summary>Obtaining OAuth Client ID for Facebook</summary>
-   
+<summary>Obtaining OAuth Client ID for Facebook</summary>
+
 1. **Create a Facebook App:**
-   - Go to the [Facebook Developers](https://developers.facebook.com/) website and log in.
+   - Go to [Facebook Developers](https://developers.facebook.com/) and log in.
    - Click on "My Apps" and then "Create App".
-   - Enter the required information for your app (display name, contact email, etc.) and create the app.
+   - Fill in the required information.
 
 2. **Configure Basic Settings:**
-   - In your app dashboard, go to Settings > Basic.
-   - Add a platform (select Website) and enter your site URL(http://127.0.0.1:8000/complete/facebook/).
+   - Go to Settings > Basic.
+   - Add a platform (select Website) and enter your site URL: `http://127.0.0.1:8000/complete/facebook/`.
    - Save your changes.
 
 3. **Get App ID and App Secret:**
-    
-    - Update the following settings to your settings file, replacing `'your-facebook-client-id'` and `'your-facebook-client-secret'` with your actual LinkedIn app credentials:
-     ```python
-        SOCIAL_AUTH_FACEBOOK_OAUTH2_KEY = 'your-client-id'
-        SOCIAL_AUTH_FACEBOOK_OAUTH2_SECRET = 'your-client-secret'
-     ```
+   - Update the following settings in your `settings.py`:
 
-
+   ```python
+   SOCIAL_AUTH_FACEBOOK_OAUTH2_KEY = 'your-client-id'
+   SOCIAL_AUTH_FACEBOOK_OAUTH2_SECRET = 'your-client-secret'
+   ```
 </details>
+
 <details>
-  <summary>Obtaining OAuth Client ID for LinkedIn</summary>
+<summary>Obtaining OAuth Client ID for LinkedIn</summary>
 
-  ### Step 1: Create a LinkedIn App
-  1. Go to the [LinkedIn Developer Portal](https://www.linkedin.com/developers/) and sign in.
-  2. Click on "Create App" and fill in the required details, such as the app name, description, and logo.
-  3. In the "Authorized Redirect URLs" section, add the callback URL for your Django app. This URL will be like `http://127.0.0.1:8000/complete/linkedin/`.
-  4. Save the changes and note down the Client ID and Client Secret provided by LinkedIn.
+1. **Create a LinkedIn App:**
+   - Go to the [LinkedIn Developer Portal](https://www.linkedin.com/developers/) and sign in.
+   - Click on "Create App" and fill in the required details.
+   - Add the callback URL for your Django app: `http://127.0.0.1:8000/complete/linkedin/`.
 
-  ### Step 2: Configure Django Settings
-  
-    1. Update the following settings to your settings file, replacing `'your-linkedin-client-id'` and `'your-linkedin-client-secret'` with your actual LinkedIn app credentials:
-     ```python
-     SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = 'your-client-id'
-     SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'your-client-secret'
-     ```
+2. **Configure Django Settings:**
+   - Update the following settings in `settings.py`:
+
+   ```python
+   SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = 'your-client-id'
+   SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'your-client-secret'
+   ```
 </details>
 
-<h2> To run the program in local server use the following command </h2>
-<code>python manage.py runserver</code>
+### To Run the Program on Local Server
 
-<p>Then go to http://127.0.0.1:8000 in your browser</p>
+Use the following command:
 
-<h2>Project snapshot</h2>
-<h3>Home page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409444-0e40a600-1b8c-11e9-9ab0-27d759db8973.jpg" width="100%"</img> 
-</div>
+```bash
+python manage.py runserver
+```
 
-<h3>Login Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409509-36c8a000-1b8c-11e9-845a-65b49262aa53.png" width="100%"</img> 
-</div>
+Then go to [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
-<h3>Registration Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409562-5cee4000-1b8c-11e9-82f6-1aa2df159528.png" width="100%"</img> 
-</div>
+## Project Snapshot
 
-<h3>Poll List Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409728-d423d400-1b8c-11e9-8903-4c08ba64512e.png" width="100%"</img> 
-</div>
+### Home Page
+![Home Page](https://user-images.githubusercontent.com/19981097/51409444-0e40a600-1b8c-11e9-9ab0-27d759db8973.jpg)
 
-<h3>Poll Add Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409796-fe759180-1b8c-11e9-941b-c1202956cca4.png" width="100%"</img> 
-</div>
+### Login Page
+![Login Page](https://user-images.githubusercontent.com/19981097/51409509-36c8a000-1b8c-11e9-845a-65b49262aa53.png)
 
-<h3>Polling page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409843-1e0cba00-1b8d-11e9-9109-cceb79a6a623.png" width="100%"</img> 
-</div>
+### Registration Page
+![Registration Page](https://user-images.githubusercontent.com/19981097/51409562-5cee4000-1b8c-11e9-82f6-1aa2df159528.png)
 
-<h3>Poll Result Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51409932-60ce9200-1b8d-11e9-9c83-c59ba498ca8b.png" width="100%"</img> 
-</div>
+### Poll List Page
+![Poll List Page](https://user-images.githubusercontent.com/19981097/51409728-d423d400-1b8c-11e9-8903-4c08ba64512e.png)
 
-<h3>Poll Edit Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51410008-92dff400-1b8d-11e9-8172-c228e4b60e28.png" width="100%"</img> 
-</div>
+### Poll Add Page
+![Poll Add Page](https://user-images.githubusercontent.com/19981097/51409796-fe759180-1b8c-11e9-941b-c1202956cca4.png)
 
-<h3>Choice Update Delete Page</h3>
-<div align="center">
-    <img src="https://user-images.githubusercontent.com/19981097/51410442-dc7d0e80-1b8e-11e9-8f8e-18e6d7bb70fb.png" width="100%"</img> 
-</div>
+### Polling Page
+![Polling Page](https://user-images.githubusercontent.com/19981097/51409843-1e0cba00-1b8d-11e9-9109-cceb79a6a623.png)
 
-<h3>Dsahboard Page</h3>
-<div align="center">
-<img width="100%" alt="dashboard" src="https://github.com/devmahmud/Django-Poll-App/assets/17628879/46bd5f4d-b236-44c4-8636-2e171e2173e5"> 
-</div>
+### Poll Result Page
+![Poll Result Page](https://user-images.githubusercontent.com/19981097/51409932-60ce9200-1b8d-11e9-9c83-c59ba498ca8b.png)
 
-<h2>Author</h2>
-<blockquote>
-  Mahmudul alam<br>
-  Email: expelmahmud@gmail.com
-</blockquote>
+### Poll Edit Page
+![Poll Edit Page](https://user-images.githubusercontent.com/19981097/51410008-92dff400-1b8d-11e9-8172-c228e4b60e28.png)
+
+### Choice Update/Delete Page
+![Choice Update/Delete Page](https://user-images.githubusercontent.com/19981097/51410442-dc7d0e80-1b8e-11e9-8f8e-18e6d7bb70fb.png)
+
+### Dashboard Page
+![Dashboard Page](https://github.com/devmahmud/Django-Poll-App/assets/17628879/46bd5f4d-b236-44c4-8636-2e171e2173e5)
+
+## Author
+**Mahmudul Alam**  
+Email: expelmahmud@gmail.com
 
 <div align="center">
     <h3>========Thank You !!!=========</h3>
 </div>
+```
+
+Feel free to adjust any sections further if needed!
