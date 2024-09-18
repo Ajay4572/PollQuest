@@ -10,7 +10,7 @@ These instructions will help you get a copy of the project up and running on you
 ### Prerequisites
 
 ```text
-Python 3.5 or higher and Django 2.0 or higher
+Python 3.5 or Django 2.0 
 ```
 
 ### Installing
@@ -18,13 +18,13 @@ Python 3.5 or higher and Django 2.0 or higher
 Open your terminal and type:
 
 ```bash
-git clone https://github.com/yourusername/PollQuest.git
+git clone https://github.com/Ajay4572/PollQuest.git
 ```
 
 Or simply download using the URL below:
 
 ```text
-https://github.com/yourusername/PollQuest.git
+https://github.com/Ajay4572/PollQuest.git
 ```
 
 ### To Migrate the Database
@@ -191,8 +191,8 @@ Then go to [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 ![Dashboard Page](https://github.com/devmahmud/Django-Poll-App/assets/17628879/46bd5f4d-b236-44c4-8636-2e171e2173e5)
 
 ## Author
-**Mahmudul Alam**  
-Email: expelmahmud@gmail.com
+**Ajay Kumar**  
+Email: ajaysnb64@gmail.com
 
 <div align="center">
     <h3>========Thank You !!!=========</h3>
